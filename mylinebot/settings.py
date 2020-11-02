@@ -26,8 +26,7 @@ SECRET_KEY = '@#yzx9qi32@!c@q1#g@3u-b-^qfvqy)*3&8o44a)qxuk5n(d=!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'stormy-harbor-05411.herokuapp.com',
-    '127.0.0.0'
+    'stormy-harbor-05411.herokuapp.com'
 ]
 
 

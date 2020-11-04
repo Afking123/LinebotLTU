@@ -25,7 +25,8 @@ def callback(request):
 
         for event in events:
             if isinstance(event, MessageEvent):
-                message = ImagemapSendMessage(
+                if event.message.text=="圖片地圖":
+                    message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/PCYD9ml.jpg',
                     alt_text='MHW',
                     base_size=BaseSize(width=768,height=432),
@@ -43,6 +44,29 @@ def callback(request):
                             )
                         )
                     ]
+                )
+                elif event.message.text=="圖片木馬":
+                    message = TemplateSendMessage(
+                    alt_text='圖片木馬',
+                    template=ImageCarouselTemplate(
+                    columns=[
+                        ImageCarouselColumn(
+                            image_url='https://imgur.com/REejfPZ.jpg',
+                            action=PostbackTemplateAction(
+                                label='碎龍',
+                                data='action=buy&itemid=1'
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://imgur.com/2wB5aG4.jpg',
+                            action=PostbackTemplateAction(
+                                label='斬龍',
+                                data='action=buy&itemid=2',
+                                uri='https://imgur.com/2wB5aG4.jpg'
+                            )
+                        )
+                    ]
+                )
                 )
                 line_bot_api.reply_message(event.reply_token,message)
 

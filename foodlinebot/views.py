@@ -68,6 +68,15 @@ def callback(request):
                     ]
                 )
                 )
+                elif event.message.text=='位置':
+                    message = LocationSendMessage(
+                        title='嶺東科大',
+                        address='嶺東科技大學',
+                        latitude=24.135015,
+                        longitude=120.608862
+                    )
+                else:
+                    message = TextSendMessage(text='請輸入圖片木馬,圖片地圖或位置')
                 line_bot_api.reply_message(event.reply_token,message)
 
         return HttpResponse()

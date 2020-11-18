@@ -27,20 +27,32 @@ def callback(request):
             if isinstance(event, MessageEvent):
                 if event.message.text=="圖片地圖":
                     message = ImagemapSendMessage(
-                    base_url='https://i.imgur.com/PCYD9ml.jpg',
-                    alt_text='MHW',
-                    base_size=BaseSize(width=768,height=432),
+                    base_url='https://i.imgur.com/SwgBzhf.jpg',
+                    alt_text='server_imagemap',
+                    base_size=BaseSize(width=1353,height=718),
                     actions=[
                         URIImagemapAction(
-                            link_uri="https://www.monsterhunter.com/world-iceborne/hk/",
+                            link_uri="https://dashboard.heroku.com/",
                             area=ImagemapArea(
-                                x=0,y=0,width=384,height=432
+                                x=359,y=359,width=676.5,height=359
                             )
                         ),
                         URIImagemapAction(
-                            link_uri="https://forum.gamer.com.tw/A.php?bsn=5786",
+                            link_uri="https://developers.line.biz/zh-hant/",
                             area=ImagemapArea(
-                                x=384,y=0,width=384,height=432
+                                x=359,y=0,width=676.5,height=359
+                            )
+                        ),
+                        URIImagemapAction(
+                            link_uri="https://code.visualstudio.com/",
+                            area=ImagemapArea(
+                                x=0,y=0,width=676.5,height=359
+                            )
+                        ),
+                        URIImagemapAction(
+                            link_uri="https://git-scm.com/",
+                            area=ImagemapArea(
+                                x=0,y=359,width=676.5,height=359
                             )
                         )
                     ]
@@ -51,18 +63,26 @@ def callback(request):
                     template=ImageCarouselTemplate(
                     columns=[
                         ImageCarouselColumn(
-                            image_url='https://imgur.com/REejfPZ.jpg',
+                            image_url='https://imgur.com/0GHfWpF.jpg',
                             action=PostbackTemplateAction(
-                                label='碎龍',
+                                label='A區',
                                 data='action=buy&itemid=1'
                             )
                         ),
                         ImageCarouselColumn(
-                            image_url='https://imgur.com/2wB5aG4.jpg',
+                            image_url='https://imgur.com/kMQ54qH.jpg',
                             action=PostbackTemplateAction(
-                                label='斬龍',
+                                label='B區',
                                 data='action=buy&itemid=2',
-                                uri='https://imgur.com/2wB5aG4.jpg'
+                                uri='https://imgur.com/kMQ54qH.jpg'
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://imgur.com/1QWQ9TZ.jpg',
+                            action=PostbackTemplateAction(
+                                label='c區',
+                                data='action=buy&itemid=2',
+                                uri='https://imgur.com/1QWQ9TZ.jpg'
                             )
                         )
                     ]

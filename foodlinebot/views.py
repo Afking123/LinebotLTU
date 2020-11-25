@@ -25,7 +25,7 @@ def callback(request):
 
         for event in events:
             if isinstance(event, MessageEvent):
-                if event.message.text=="圖片地圖":
+                if event.message.text=="租屋地圖":
                     message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/SwgBzhf.jpg',
                     alt_text='server_imagemap',
@@ -57,9 +57,9 @@ def callback(request):
                         )
                     ]
                 )
-                elif event.message.text=="圖片木馬":
+                elif event.message.text=="租屋區域":
                     message = TemplateSendMessage(
-                    alt_text='圖片木馬',
+                    alt_text='租屋區域',
                     template=ImageCarouselTemplate(
                     columns=[
                         ImageCarouselColumn(

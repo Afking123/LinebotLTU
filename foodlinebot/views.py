@@ -96,7 +96,7 @@ def callback(request):
                         longitude=120.608862
                     )
                 else:
-                    message = TextSendMessage(text='請輸入圖片木馬,圖片地圖或位置')
+                    message = TextSendMessage(text='請輸入租屋地圖,租屋區域或位置')
                 line_bot_api.reply_message(event.reply_token,message)
 
         return HttpResponse()

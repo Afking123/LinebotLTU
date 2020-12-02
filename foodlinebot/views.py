@@ -95,8 +95,53 @@ def callback(request):
                         latitude=24.135015,
                         longitude=120.608862
                     )
+                elif event.message.text=='語音':
+                    message = AudioSendMessage(original_content_url='https://imgur.com/ueFHLMe.mp4',duration=10000)
+                elif event.message.text=='按鈕樣板':
+                    message = TemplateSendMessage(
+                            alt_text='按鈕樣板',
+                            template=ButtonsTemplate(
+                                title='標題',
+                                text='內容',
+                                thumbnail_image_url='https://img.youtube.com/vi/VKMw2it8dQY/hqdefault.jpg',
+                                actions=[
+                                    MessageTemplateAction(
+                                        label='訊息回傳',
+                                        text='YOOOOOOoooooo'
+                                    ),
+                                    PostbackTemplateAction(
+                                        label='語音',
+                                        text='語音',
+                                        data='B'
+                                    ),
+                                    URITemplateAction(
+                                        label='超連結',
+                                        uri='https://www.youtube.com/watch?v=VKMw2it8dQY&ab_channel=PianoFantasia-Topic'
+                                    )
+                                ]
+                            )
+                        )
+                elif event.message.text=='兩按鈕樣板':
+                    message = TemplateSendMessage(
+                        alt_text='兩按鈕樣板',
+                        template=ConfirmTemplate(
+                            title='ConfirmTemplate',
+                            text='有兩種按鈕選擇',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='Y',
+                                    text='確認',
+                                    data='Yes'
+                                ),
+                                MessageTemplateAction(
+                                    label='N',
+                                    text='否'
+                                )
+                            ]
+                        )
+                    )
                 else:
-                    message = TextSendMessage(text='請輸入租屋地圖,租屋區域或位置')
+                    message = TextSendMessage(text='請輸入租屋地圖,租屋區域,語音,按鈕樣板,兩按鈕樣板或位置')
                 line_bot_api.reply_message(event.reply_token,message)
 
         return HttpResponse()

@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'stormy-harbor-05411.herokuapp.com',
-    '201ed601e09a.ngrok.io'
+    'c48616de7f72.ngrok.io'
 ]
 
 

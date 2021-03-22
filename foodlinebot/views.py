@@ -6,6 +6,7 @@ from django.conf import settings
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import *
+from .scraper import rent591
  
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 parser = WebhookParser(settings.LINE_CHANNEL_SECRET)
@@ -140,8 +141,11 @@ def callback(request):
                             ]
                         )
                     )
+                elif event.message.text in ["台北市","新北市","基隆市","宜蘭縣","新竹市","新竹縣","桃園市","苗栗縣","台中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣","台南市","高雄市","澎湖縣","金門縣","屏東縣","台東縣","花蓮縣","連江縣"]:
+                    rent = rent591(event.message.text)
+                    message = TextSendMessage(text=rent.scrape())
                 else:
-                    message = TextSendMessage(text='請輸入租屋地圖,租屋區域,語音,按鈕樣板,兩按鈕樣板或位置')
+                    message = TextSendMessage(text='請輸入租屋地圖,租屋區域,語音,按鈕樣板,兩按鈕樣板,位置或以縣市名搜尋好房網買屋')
                 line_bot_api.reply_message(event.reply_token,message)
 
         return HttpResponse()

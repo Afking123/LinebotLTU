@@ -139,7 +139,7 @@ def callback(request):
                                     text2=text2+']}'
                         message = FlexSendMessage(
                             alt_text='附近租戶',
-                            contents=eval(flexmessageframe(text1,text2)),
+                            contents=eval(flexmessageframe(text1,text2)),#可修改模組達到帶query 的 httprequest
                                 quick_reply=QuickReply(items=[QuickReplyButton(action=MessageAction(label="下一頁",text=('page,'+str(page+1)+','+str(ulon)+','+str(ulat))))])
                                 )
                 elif event.message.type=='text':#如果回傳為文字訊息
@@ -282,21 +282,11 @@ def callback(request):
                             ]
                         )
                     )
-                    elif event.message.text=='ass':
-                        message = TextSendMessage(text=str(event.message))
                     elif event.message.text in ["台北市","新北市","基隆市","宜蘭縣","新竹市","新竹縣","桃園市","苗栗縣","台中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣","台南市","高雄市","澎湖縣","金門縣","屏東縣","台東縣","花蓮縣","連江縣"]:
                         rent = rent591(event.message.text)
                         message = TextSendMessage(text=rent.scrape())
-                    elif event.message.text=="1":
-                        page=1
-                        message = FlexSendMessage(
-                            alt_text='附近租戶',
-                            contents=eval(flexmessageframe(bodymessage('武雄家','99坪','87元','0934048487','台南大魯')+bodymessage('武雄家','99坪','87元','0934048487','台南大魯'),']}')),quick_reply=QuickReply(items=[QuickReplyButton(action=MessageAction(label="下一頁", text=page+1,type='nextpage',page=page+1))])
-                            #可修改模組達到帶query 的 httprequest
-                        )
-                    elif event.message.text=='2':
-                        message = TextSendMessage(text=event.message.text,
-                        quick_reply=QuickReply(items=[QuickReplyButton(action=MessageAction(label="下一頁", text=int(event.message.text)+1))]))
+                    elif event.message.text=='http://203.217.122.53/Member/Login':
+                        message = TextSendMessage(text='點擊網址進入我們的登入頁面')
                     else:
                         message = TextSendMessage(text='查詢租屋地圖的方法\n方法一\n請在文字欄輸入『 租屋區域 』\n方法二\n按下選單中間的Map按鈕\n┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉\n快速查詢附近物件及房東資訊\n點選下方 ✚ 號 ➡️按下位置資訊➡️按下分享')
                 line_bot_api.reply_message(event.reply_token,message)
